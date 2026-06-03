@@ -1,0 +1,35 @@
+:root{ --ink:#000; --paper:#fff; --sage:#d5e8dc; }
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"EB Garamond", Georgia, serif;
+  font-size:18px; line-height:1.6;
+  padding:clamp(24px,6vw,96px);
+}
+.markmini{position:fixed; top:16px; left:16px; width:120px; z-index:10;}
+.markmini img{width:100%; height:auto; display:block;}
+.hero{margin:12vh 0; max-width:50ch;}
+.wordmark{max-width:360px; width:60%; height:auto; display:block; margin-bottom:4vh;}
+.hero h1{font-weight:400; font-size:clamp(2rem,5vw,4rem); line-height:1.15; margin:0;}
+
+.slideshow{margin:12vh auto; max-width:1000px;}
+.mat{background:var(--sage); padding:clamp(16px,4vw,48px); position:relative;}
+.slide{margin:0; display:none;}
+.slide.is-active{display:block;}
+.slide img{width:100%; height:auto; object-fit:contain; display:block;}
+.slide figcaption{margin-top:1rem; font-style:italic; font-size:.95rem;}
+.controls{display:flex; align-items:center; gap:1.5rem; margin-top:1rem;}
+.controls button{background:none; border:none; font:inherit; font-size:1.4rem; cursor:pointer; color:var(--ink);}
+.controls button:hover{color:#6f8f80;}
+.counter{font-size:.95rem;}
+
+.about{margin:12vh 0; max-width:60ch;}
+.about p{margin:0 0 1.4rem;}
+.themes{margin:12vh 0; max-width:60ch; font-size:.95rem;}
+.colophon{
+  margin:12vh -clamp(24px,6vw,96px) -clamp(24px,6vw,96px);
+  background:var(--sage); padding:clamp(24px,6vw,96px);
+  font-size:.95rem; display:grid; gap:1.5rem;
+}
+@media(min-width:768px){ .colophon{grid-template-columns:repeat(3,1fr);} }
+@media(prefers-reduced-motion:reduce){ *{transition:none!important; animation:none!important;} }
