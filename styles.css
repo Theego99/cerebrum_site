@@ -12,7 +12,11 @@
 
 *{ box-sizing:border-box; }
 
-html{ scroll-behavior:smooth; }
+html{
+  scroll-behavior:smooth;
+  /* a gentle snap so a downward scroll comes to rest on the carousel */
+  scroll-snap-type:y proximity;
+}
 
 body{
   margin:0;
@@ -78,9 +82,11 @@ img{ max-width:100%; }
 }
 .wordmark{
   display:block;
-  width:clamp(240px, 44vw, 440px);
-  height:auto;
-  margin:0 0 5vh;
+  /* sized by height so it reads as large as the carousel pictures,
+     with a width guard so it never exceeds the viewport */
+  height:min(70vh, 62vw);
+  width:auto;
+  margin:0 0 4vh;
 }
 .hero h1{
   margin:0;
@@ -96,6 +102,8 @@ img{ max-width:100%; }
 .slideshow{
   margin:var(--gap) auto;
   max-width:min(1280px, 96vw);
+  scroll-snap-align:start;     /* scroll down → rest here, on the carousel */
+  scroll-margin-top:4vh;
 }
 .mat{
   position:relative;         /* containing block for the curtain */
@@ -174,17 +182,7 @@ img{ max-width:100%; }
   font-variant-numeric:tabular-nums;
 }
 
-/* ---- 4. Themes ----------------------------------------------------------- */
-.themes{
-  margin:var(--gap) 0;
-  max-width:64ch;
-  font-size:.95rem;
-  line-height:2;
-  color:var(--ink);
-}
-.themes p{ margin:0; }
-
-/* ---- 6. Colophon --------------------------------------------------------- */
+/* ---- 4. Colophon --------------------------------------------------------- */
 .colophon{
   /* bleed the sage panel to the full viewport width, past the body padding */
   margin:var(--gap) calc(-1 * var(--pad)) calc(-1 * var(--pad));
