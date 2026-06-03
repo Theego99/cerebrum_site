@@ -1,35 +1,217 @@
-:root{ --ink:#000; --paper:#fff; --sage:#d5e8dc; }
-*{box-sizing:border-box;}
+/* Studio Cerebrum — a studio as a slow gallery.
+   Three colours only: ink, paper, sage. Sage is a whisper (< ~20% of any view). */
+
+:root{
+  --ink:#000000;
+  --paper:#ffffff;
+  --sage:#d5e8dc;
+
+  --pad:clamp(24px, 6vw, 96px);   /* outer page margin */
+  --gap:12vh;                     /* vertical rhythm between sections */
+}
+
+*{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
 body{
-  margin:0; background:var(--paper); color:var(--ink);
-  font-family:"EB Garamond", Georgia, serif;
-  font-size:18px; line-height:1.6;
-  padding:clamp(24px,6vw,96px);
+  margin:0;
+  padding:var(--pad);
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"EB Garamond", Georgia, "Times New Roman", serif;
+  font-size:18px;
+  line-height:1.6;
+  font-weight:400;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
 }
-.markmini{position:fixed; top:16px; left:16px; width:120px; z-index:10;}
-.markmini img{width:100%; height:auto; display:block;}
-.hero{margin:12vh 0; max-width:50ch;}
-.wordmark{max-width:360px; width:60%; height:auto; display:block; margin-bottom:4vh;}
-.hero h1{font-weight:400; font-size:clamp(2rem,5vw,4rem); line-height:1.15; margin:0;}
 
-.slideshow{margin:12vh auto; max-width:1000px;}
-.mat{background:var(--sage); padding:clamp(16px,4vw,48px); position:relative;}
-.slide{margin:0; display:none;}
-.slide.is-active{display:block;}
-.slide img{width:100%; height:auto; object-fit:contain; display:block;}
-.slide figcaption{margin-top:1rem; font-style:italic; font-size:.95rem;}
-.controls{display:flex; align-items:center; gap:1.5rem; margin-top:1rem;}
-.controls button{background:none; border:none; font:inherit; font-size:1.4rem; cursor:pointer; color:var(--ink);}
-.controls button:hover{color:#6f8f80;}
-.counter{font-size:.95rem;}
+/* Keyboard focus is always clearly visible (visibility requirement). */
+:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:3px;
+}
 
-.about{margin:12vh 0; max-width:60ch;}
-.about p{margin:0 0 1.4rem;}
-.themes{margin:12vh 0; max-width:60ch; font-size:.95rem;}
+img{ max-width:100%; }
+
+/* ---- 1. Fixed corner mark ------------------------------------------------ */
+/* Hidden by default: on narrow screens there is no margin for it to live in,
+   so it would sit on top of the text. It only appears on wide screens, where
+   the page's outer margin is wider than the mark — so it never covers copy. */
+.markmini{
+  position:fixed;
+  top:24px;
+  left:12px;
+  width:50px;
+  z-index:10;
+  display:none;
+  opacity:0;
+  transform:translateY(-6px);
+  transition:opacity .4s ease, transform .4s ease;
+  pointer-events:none;          /* unclickable while hidden */
+}
+@media (min-width:1100px){
+  .markmini{ display:block; }   /* outer margin (>=66px) now clears the mark */
+}
+.markmini.is-visible{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+.markmini img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* ---- 2. Hero ------------------------------------------------------------- */
+/* Logo + statement centred in the middle of the first screen. */
+.hero{
+  min-height:calc(100vh - 2 * var(--pad));
+  margin:0 0 var(--gap);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.wordmark{
+  display:block;
+  width:clamp(240px, 44vw, 440px);
+  height:auto;
+  margin:0 0 5vh;
+}
+.hero h1{
+  margin:0;
+  max-width:24ch;
+  font-weight:400;
+  font-size:clamp(2rem, 5vw, 4rem);
+  line-height:1.14;
+  letter-spacing:-0.01em;
+  text-wrap:balance;
+}
+
+/* ---- 3. Slideshow (the heart of the page — kept large) ------------------- */
+.slideshow{
+  margin:var(--gap) auto;
+  max-width:min(1280px, 96vw);
+}
+.mat{
+  position:relative;         /* containing block for the curtain */
+  background:var(--sage);
+  padding:clamp(20px, 4vw, 56px);
+}
+/* All slides share one grid cell so the frame stays steady between images.
+   minmax(0,1fr) lets the track shrink below the images' intrinsic width
+   (default grid min-width:auto would otherwise force horizontal overflow). */
+.frame{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr);
+  cursor:pointer;            /* click image to advance */
+}
+.slide{
+  grid-area:1 / 1;
+  min-width:0;
+  margin:0;
+  opacity:0;
+  visibility:hidden;
+  align-self:center;
+}
+.slide.is-active{
+  opacity:1;
+  visibility:visible;
+}
+.slide img{
+  width:100%;
+  height:auto;
+  max-height:84vh;
+  object-fit:contain;        /* never crop the artworks */
+  display:block;
+  margin:0 auto;
+}
+.slide figcaption{
+  margin-top:1.1rem;
+  font-style:italic;
+  font-size:1rem;
+  color:var(--ink);
+}
+
+/* Black curtain: fades in over the image, the next slide is swapped behind it,
+   then it fades out once that image has loaded — buying time for heavy photos. */
+.curtain{
+  position:absolute;
+  inset:0;
+  background:var(--ink);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .34s ease;
+  z-index:2;
+}
+.curtain.is-on{ opacity:1; }
+
+.controls{
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  margin-top:1.25rem;
+}
+.controls button{
+  background:none;
+  border:none;
+  font:inherit;
+  font-size:1.5rem;
+  line-height:1;
+  padding:.15em .5em;
+  cursor:pointer;
+  color:var(--ink);
+  border-radius:2px;
+  transition:background-color .2s ease;
+}
+.controls button:hover{ background:var(--sage); }   /* accent only on hover */
+.counter{
+  font-size:.95rem;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---- 4. Themes ----------------------------------------------------------- */
+.themes{
+  margin:var(--gap) 0;
+  max-width:64ch;
+  font-size:.95rem;
+  line-height:2;
+  color:var(--ink);
+}
+.themes p{ margin:0; }
+
+/* ---- 6. Colophon --------------------------------------------------------- */
 .colophon{
-  margin:12vh -clamp(24px,6vw,96px) -clamp(24px,6vw,96px);
-  background:var(--sage); padding:clamp(24px,6vw,96px);
-  font-size:.95rem; display:grid; gap:1.5rem;
+  /* bleed the sage panel to the full viewport width, past the body padding */
+  margin:var(--gap) calc(-1 * var(--pad)) calc(-1 * var(--pad));
+  padding:clamp(32px, 6vw, 96px) var(--pad);
+  background:var(--sage);
+  color:var(--ink);
+  font-size:.95rem;
+  display:grid;
+  gap:1.5rem;
 }
-@media(min-width:768px){ .colophon{grid-template-columns:repeat(3,1fr);} }
-@media(prefers-reduced-motion:reduce){ *{transition:none!important; animation:none!important;} }
+.colophon p{ margin:0; }
+.colophon strong{ font-weight:500; }
+.colophon a{
+  color:var(--ink);
+  text-decoration:underline;
+  text-underline-offset:2px;
+  text-decoration-thickness:1px;
+}
+.colophon a:hover{ text-decoration:none; }
+
+/* ---- Breakpoint ---------------------------------------------------------- */
+@media (min-width:768px){
+  .colophon{ grid-template-columns:repeat(3, 1fr); gap:3rem; }
+}
+
+/* ---- Motion preferences -------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition:none !important; animation:none !important; }
+}

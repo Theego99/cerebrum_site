@@ -5,56 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Studio Cerebrum</title>
   <meta name="description" content="Studio Cerebrum — an interdisciplinary practice across publication, textile, sculpture, and installation." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#ffffff" />
+
+  <link rel="icon" type="image/jpeg" href="assets/wordmark.jpg" />
+  <link rel="apple-touch-icon" href="assets/wordmark.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body id="top">
-  <a class="markmini" href="#top" aria-label="Studio Cerebrum — back to top">
-    <img src="assets/wordmark.jpg" alt="Studio Cerebrum" />
+
+  <!-- 1. Fixed corner mark — fades in after the hero scrolls away -->
+  <a class="markmini" href="#top" aria-label="Studio Cerebrum — back to top" data-mark hidden>
+    <img src="assets/wordmark.jpg" alt="" width="120" height="92" />
   </a>
 
+  <!-- 2. Hero -->
   <header class="hero">
-    <img class="wordmark" src="assets/wordmark.jpg" alt="Studio Cerebrum wordmark, hand-drawn in coloured pencil" />
+    <img class="wordmark" src="assets/wordmark.jpg"
+         alt="Studio Cerebrum wordmark, hand-drawn in coloured pencil"
+         width="912" height="668" />
     <h1>Studio Cerebrum works at the seam where material, memory, and labour are rewoven into form.</h1>
   </header>
 
+  <!-- 3. Slideshow -->
   <section class="slideshow" aria-roledescription="carousel" aria-label="Selected works">
     <div class="mat">
-      <figure class="slide is-active">
-        <img src="assets/work-prato.jpg" alt="Zine spread: Case Study 1, Textile (Prato), bins of dyed wool in blue light" />
-        <figcaption>Case Study 1 — Textile (Prato), Italy</figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="assets/work-zine.jpg" loading="lazy" alt="Hands holding a zine with a yellow 3D-printed mesh and a photographic insert" />
-        <figcaption>Zine — foam nets, skin, and the heat of rotting (object + insert)</figcaption>
-      </figure>
-      <figure class="slide">
-        <img src="assets/work-rug.jpg" loading="lazy" alt="Two people holding a large hand-tufted rug outdoors in a garden" />
-        <figcaption>Hand-tufted rug, held in the garden</figcaption>
-      </figure>
+      <div class="frame" data-frame>
+        <figure class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+          <img src="assets/work-zine.jpg"
+               alt="Zine spread for Case Study 1, Textile (Prato): a printed photograph of stacked crates of dyed wool under blue light, with handwritten field notes."
+               width="788" height="591" />
+          <figcaption>Case Study 1 — Textile (Prato), Italy</figcaption>
+        </figure>
+        <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+          <img src="assets/work-prato.jpg" loading="lazy"
+               alt="Hands holding an open zine; a yellow 3D-printed mesh net rests over a photographic insert of an outdoor installation."
+               width="1209" height="615" />
+          <figcaption>Zine — foam nets, skin, and the heat of rotting (object + insert)</figcaption>
+        </figure>
+        <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+          <img src="assets/work-rug.jpg" loading="lazy"
+               alt="Two people holding a large hand-tufted rug outdoors at Daichuji temple, its pink and blue forms facing the camera."
+               width="600" height="400" />
+          <figcaption>Hand-tufted rug, held at Daichuji temple</figcaption>
+        </figure>
+      </div>
+      <!-- fades to black between slides, masking the next image while it loads -->
+      <div class="curtain" data-curtain aria-hidden="true"></div>
     </div>
+
     <div class="controls">
-      <button class="prev" aria-label="Previous work">←</button>
-      <span class="counter"><span class="n">1</span>/3</span>
-      <button class="next" aria-label="Next work">→</button>
+      <button class="prev" type="button" aria-label="Previous work">&larr;</button>
+      <span class="counter" aria-live="polite"><span class="n">1</span>/3</span>
+      <button class="next" type="button" aria-label="Next work">&rarr;</button>
     </div>
   </section>
 
-  <section class="about">
-    <p>Studio Cerebrum is an interdisciplinary practice moving between publication, textile, sculpture, and installation. Each project begins as research and ends as an object that can be held, read, or walked around.</p>
-    <p>The studio is drawn to overlooked economies and the hands inside them — the migrant labour of a textile city, the slow craft of a hand-tufted rug, the quiet authorship of a zine. Work grows from sustained investigation into how things are made, by whom, and at what cost, then returns that investigation to the world as something tactile.</p>
-    <p>This is a duet between the micro and the macro: the granular structure of a single material on one side, the wider cultural and ecological system it belongs to on the other. The studio attends to both, and lets the tension between them become form.</p>
-  </section>
-
+  <!-- 4. Themes -->
   <section class="themes">
     <p>Critical Ecologies · Extractivism · Textile (Prato) · Circular Resource Systems · Migrant Labour · Publication · Hand-Tufting · Material Memory · Installation · Editorial</p>
   </section>
 
+  <!-- 5. Colophon -->
   <footer class="colophon">
-    <p><strong>Studio Cerebrum</strong><br>[[STUDIO_ADDRESS_PLACEHOLDER]]</p>
-    <p>Enquiries — [[EMAIL_PLACEHOLDER]]<br>Instagram — [[INSTAGRAM_PLACEHOLDER]]</p>
-    <p>© Studio Cerebrum 2026<br>Reference &amp; gratitude: OK-RM (concept)</p>
+    <p><strong>Studio Cerebrum</strong><br>Tokyo</p>
+    <p>Enquiries — <a href="mailto:info.studiocerebrum@gmail.com">info.studiocerebrum@gmail.com</a><br>Instagram — <a href="https://www.instagram.com/studio_cerebrum/" target="_blank" rel="noopener">@studio_cerebrum</a></p>
+    <p>© Studio Cerebrum 2026</p>
   </footer>
 
   <script src="script.js"></script>
