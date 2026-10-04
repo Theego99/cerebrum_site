@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "editorial": {
+      "type": "cerebrum-editorial",
+      "settings": {},
+      "blocks": {
+        "musucus": {
+          "type": "story",
+          "settings": {
+            "eyebrow": "In the company of",
+            "title": "musucus",
+            "body": "<p>Handmade rugs dedicated to texture, form and the feeling of a room.</p>",
+            "link": "https://musucus.base.shop/",
+            "link_label": "Visit the musucus shop"
+          }
+        },
+        "otumn": {
+          "type": "story",
+          "settings": {
+            "eyebrow": "In the company of",
+            "title": "otumn.",
+            "body": "<p>A candle project exploring stories, traditional ceramics and the life of objects.</p>",
+            "link": "https://www.instagram.com/otumn_/",
+            "link_label": "Discover otumn. · @otumn_"
+          }
+        }
+      },
+      "block_order": [
+        "musucus",
+        "otumn"
+      ]
+    }
+  },
+  "order": [
+    "editorial"
+  ]
+}

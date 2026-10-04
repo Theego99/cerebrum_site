@@ -1,0 +1,116 @@
+{% comment %}
+  Add to an unpublished Online Store 2.0 theme. Product, cart and checkout pages
+  remain native theme features. No customer data or card details are collected here.
+{% endcomment %}
+<section class="ce" id="cerebrum-{{ section.id }}">
+  <div class="ce-hero">
+    <div>
+      <p class="ce-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1>{{ section.settings.title | escape | newline_to_br }}</h1>
+      <div class="ce-copy">{{ section.settings.introduction }}</div>
+      {% if section.settings.collection != blank %}
+        <a class="ce-link" href="{{ section.settings.collection.url }}">{{ section.settings.shop_label | escape }} &nearr;</a>
+      {% endif %}
+    </div>
+    {% if section.settings.hero_image != blank %}
+      <figure>
+        {{ section.settings.hero_image | image_url: width: 1800 | image_tag: widths: '400, 700, 1000, 1400, 1800', sizes: '(min-width: 750px) 55vw, 100vw', loading: 'eager', fetchpriority: 'high' }}
+        {% if section.settings.caption != blank %}<figcaption>{{ section.settings.caption | escape }}</figcaption>{% endif %}
+      </figure>
+    {% endif %}
+  </div>
+  {% if section.settings.collection != blank and section.settings.collection.products_count > 0 %}
+    <div class="ce-selection">
+      <p class="ce-eyebrow">{{ section.settings.selection_label | escape }}</p>
+      <h2>{{ section.settings.selection_title | escape }}</h2>
+      <ul class="ce-products" role="list">
+        {% for product in section.settings.collection.products limit: section.settings.product_limit %}
+          <li>
+            <a href="{{ product.url }}">
+              <div class="ce-image">
+                {% if product.featured_image != blank %}
+                  {{ product.featured_image | image_url: width: 800 | image_tag: widths: '240, 400, 600, 800', sizes: '(min-width: 990px) 23vw, 46vw', loading: 'lazy' }}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'ce-placeholder' }}
+                {% endif %}
+              </div>
+              {% if product.vendor != blank %}<p class="ce-vendor">{{ product.vendor | escape }}</p>{% endif %}
+              <h3>{{ product.title | escape }}</h3>
+              <p class="ce-price">
+                {% if product.price_varies %}{{ section.settings.from_label | escape }} {% endif %}
+                {{ product.price | money_with_currency }}
+                {% unless product.available %}<span class="ce-sold">{{ section.settings.sold_label | escape }}</span>{% endunless %}
+              </p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <a class="ce-link" href="{{ section.settings.collection.url }}">{{ section.settings.shop_label | escape }} &nearr;</a>
+    </div>
+  {% elsif request.design_mode %}
+    <p>Choose a collection containing published products to show the selection.</p>
+  {% endif %}
+  {% for block in section.blocks %}
+    <article class="ce-story" {{ block.shopify_attributes }}>
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '400, 800, 1200', sizes: '(min-width: 750px) 45vw, 100vw', loading: 'lazy' }}
+      {% endif %}
+      <div>
+        <p class="ce-eyebrow">{{ block.settings.eyebrow | escape }}</p>
+        {% if block.settings.logo != blank %}<div class="ce-maker-logo">{{ block.settings.logo | image_url: width: 800 | image_tag: widths: '200, 400, 800', sizes: '280px', loading: 'lazy' }}</div>{% endif %}
+        <h2>{{ block.settings.title | escape }}</h2>
+        <div class="ce-copy">{{ block.settings.body }}</div>
+        {% if block.settings.link != blank %}<a class="ce-link" href="{{ block.settings.link }}">{{ block.settings.link_label | escape }} &nearr;</a>{% endif %}
+      </div>
+    </article>
+  {% endfor %}
+</section>
+{% stylesheet %}
+  .ce{background:#f7f3eb;color:#4a3c35;padding:clamp(24px,5vw,80px);font-family:Arial,sans-serif}
+  .ce *{box-sizing:border-box}.ce a{color:inherit;text-decoration:none}.ce a:focus-visible{outline:2px solid #456693;outline-offset:5px}
+  .ce h1,.ce h2,.ce h3{font-family:Georgia,serif;font-weight:400;letter-spacing:-.035em;color:inherit}
+  .ce h1{font-size:clamp(42px,6vw,96px);line-height:1.05;margin:22px 0 30px}.ce h2{font-size:clamp(34px,4vw,60px);line-height:1.1;margin:12px 0 25px}
+  .ce-hero{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:7%;padding-bottom:65px}.ce-hero figure{margin:0}
+  .ce img{display:block;width:100%;height:auto;object-fit:contain}.ce-hero figcaption{font-size:11px;margin-top:10px}
+  .ce-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em}.ce-copy{font-size:16px;line-height:1.7;max-width:47ch}
+  .ce-link{display:inline-block;padding:8px 0;border-bottom:1px solid;margin-top:15px;font-size:14px}
+  .ce-selection{border-top:1px solid #d6c8ba;padding:45px 0 65px}.ce-products{list-style:none;padding:0;margin:35px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:25px}
+  .ce-image{aspect-ratio:4/5;background:#eee4cc;padding:18px;display:flex;align-items:center}.ce-image img{max-height:100%}.ce-placeholder{width:100%}
+  .ce-vendor{font-size:11px;margin:15px 0 0}.ce-products h3{font-size:23px;line-height:1.2;margin:8px 0}.ce-price{font-size:13px;margin:8px 0}.ce-sold{display:block;font-size:11px;margin-top:5px}
+  .ce-story{display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center;border-top:1px solid #d6c8ba;padding:60px 0}.ce-story:last-child{padding-bottom:0}
+  @media(max-width:989px){.ce-products{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:749px){.ce-hero,.ce-story{grid-template-columns:1fr;gap:28px}.ce-products{gap:20px 14px}.ce-image{padding:10px}.ce-products h3{font-size:20px}}
+.ce h1,.ce h2{color:#a55f48}.ce h1{line-height:1.1}.ce-eyebrow{color:#916a32;font-family:Georgia,serif;text-transform:none;font-style:italic;font-size:14px;letter-spacing:.03em}.ce-link{color:#a64d6a;border-bottom:2px solid #a64d6a;border-radius:0 0 40% 15%;font-family:Georgia,serif}.ce-hero figure{padding:16px;background:#ece3d6;transform:rotate(-.7deg)}.ce-products li:nth-child(2n) .ce-image{background:#e3e7ed}.ce-products li:nth-child(3n) .ce-image{background:#f0dfdf}.ce-story{border-top-style:dashed}.ce-story:nth-of-type(even) h2{color:#456693}
+.ce-maker-logo{max-width:280px;margin:0 0 20px}.ce-maker-logo img{max-height:130px;object-fit:contain;object-position:left}.ce-story:not(:has(>img)){grid-template-columns:1fr}
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "Cerebrum editorial",
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Art · Objects · Editions"},
+    {"type":"textarea","id":"title","label":"Main heading","default":"For a life\nwith art in it."},
+    {"type":"richtext","id":"introduction","label":"Introduction","default":"<p>A meeting place for things made with thought, feeling and a pair of hands.</p>"},
+    {"type":"image_picker","id":"hero_image","label":"Hero photograph"},
+    {"type":"text","id":"caption","label":"Photograph caption"},
+    {"type":"collection","id":"collection","label":"Featured collection"},
+    {"type":"text","id":"shop_label","label":"Collection link label","default":"Explore the selection"},
+    {"type":"text","id":"selection_label","label":"Selection eyebrow","default":"The selection"},
+    {"type":"text","id":"selection_title","label":"Selection heading","default":"Things to live with."},
+    {"type":"range","id":"product_limit","label":"Number of products","min":4,"max":12,"step":4,"default":8},
+    {"type":"text","id":"from_label","label":"Price range prefix","default":"From"},
+    {"type":"text","id":"sold_label","label":"Sold-out label","default":"Sold out"}
+  ],
+  "blocks": [
+    {"type":"story","name":"Artist or journal story","settings":[
+      {"type":"image_picker","id":"image","label":"Story image"},
+      {"type":"image_picker","id":"logo","label":"Maker logo"},
+      {"type":"text","id":"eyebrow","label":"Eyebrow","default":"From the studio"},
+      {"type":"text","id":"title","label":"Heading","default":"The story inside the material."},
+      {"type":"richtext","id":"body","label":"Story"},
+      {"type":"url","id":"link","label":"Link"},
+      {"type":"text","id":"link_label","label":"Link label","default":"Read the story"}
+    ]}
+  ],
+  "max_blocks":4,
+  "presets":[{"name":"Cerebrum editorial"}]
+}
+{% endschema %}
