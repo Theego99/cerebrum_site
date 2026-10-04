@@ -1,88 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Studio Cerebrum</title>
-  <meta name="description" content="Studio Cerebrum — an interdisciplinary practice across publication, textile, sculpture, and installation." />
-  <meta name="theme-color" content="#ffffff" />
-
-  <link rel="icon" type="image/jpeg" href="assets/wordmark.jpg" />
-  <link rel="apple-touch-icon" href="assets/wordmark.jpg" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body id="top">
-
-  <!-- 1. Fixed corner mark — fades in after the hero scrolls away -->
-  <a class="markmini" href="#top" aria-label="Studio Cerebrum — back to top" data-mark hidden>
-    <img src="assets/wordmark.jpg" alt="" width="120" height="92" />
-  </a>
-
-  <!-- 2. Hero -->
-  <header class="hero">
-    <img class="wordmark" src="assets/wordmark.jpg"
-         alt="Studio Cerebrum wordmark, hand-drawn in coloured pencil"
-         width="912" height="668" />
-    <!-- <h1>Studio Cerebrum works at the seam where material, memory, and labour are rewoven into form.</h1> -->
-  </header>
-
-  <!-- 3. Slideshow -->
-  <section class="slideshow" aria-roledescription="carousel" aria-label="Selected works">
-    <div class="mat">
-      <div class="frame" data-frame>
-        <figure class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 5">
-          <img src="assets/work-prato.jpg"
-               alt="Hands holding an open zine; a yellow 3D-printed mesh net rests over a photographic insert of an outdoor installation."
-               width="1209" height="615" />
-          <figcaption>Zine — In good company with FF</figcaption>
-        </figure>
-        <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
-          <img src="assets/work-zine.jpg" loading="lazy"
-               alt="Zine spread for Case Study 1, Textile (Prato): a printed photograph of stacked crates of dyed wool under blue light, with handwritten field notes."
-               width="788" height="591" />
-          <figcaption>Zine — Case Study 1</figcaption>
-        </figure>
-        <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
-          <img src="assets/work-rug.jpg" loading="lazy"
-               alt="Two people holding a large hand-tufted rug outdoors at Daichuji temple, its pink and blue forms facing the camera."
-               width="600" height="400" />
-          <figcaption>Hand-tufted rug, held at Daichuji temple</figcaption>
-        </figure>
-        <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
-          <img src="assets/Minipouch.jpg" loading="lazy"
-               alt="A small hand-knitted blue drawstring pouch on a cord, with a carved bead, photographed on a dark reflective surface."
-               width="3294" height="2329" />
-          <figcaption>Minipouch</figcaption>
-        </figure>
-        <figure class="slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
-          <img src="assets/Rug.jpg" loading="lazy"
-               alt="Close-up detail of a hand-tufted rug: abstract pink, white, black and yellow organic forms within a red border, on a pink-and-black ground."
-               width="3507" height="2480" />
-          <figcaption>Rug</figcaption>
-        </figure>
-      </div>
-      <!-- fades to black between slides, masking the next image while it loads -->
-      <div class="curtain" data-curtain aria-hidden="true"></div>
-    </div>
-
-    <div class="controls">
-      <button class="prev" type="button" aria-label="Previous work">&larr;</button>
-      <span class="counter" aria-live="polite"><span class="n">1</span>/5</span>
-      <button class="next" type="button" aria-label="Next work">&rarr;</button>
-    </div>
-  </section>
-
-  <!-- 4. Colophon -->
-  <footer class="colophon">
-    <p><strong>Studio Cerebrum</strong><br>Tokyo, London</p>
-    <p>Enquiries — <a href="mailto:info.studiocerebrum@gmail.com">info.studiocerebrum@gmail.com</a><br>Instagram — <a href="https://www.instagram.com/studio_cerebrum/" target="_blank" rel="noopener">@studio_cerebrum</a></p>
-    <p>© Studio Cerebrum 2026</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="canonical" href="https://studiocerebrum.site/"><meta property="og:type" content="website"><meta property="og:title" content="Studio Cerebrum — Art, objects and editions"><meta property="og:url" content="https://studiocerebrum.site/"><meta property="og:image" content="https://studiocerebrum.site/assets/work-rug.webp"><meta name="description" content="Studio Cerebrum is a shared art practice bringing together textile works, publications and small objects, with musucus and otumn."><title>Studio Cerebrum — Objects for everyday company</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="logo-palette.css"></head>
+<body><header><a class="brand" href="#top" aria-label="Studio Cerebrum home"><img src="assets/wordmark.webp" width="912" height="668" alt="Studio Cerebrum"></a><nav aria-label="Main"><a href="#selection" data-en="Selected works" data-ja="作品">Selected works</a><a href="#makers" data-en="The makers" data-ja="つくり手">The makers</a><a href="#journal" data-en="Journal" data-ja="読みもの">Journal</a><a href="#about" data-en="About" data-ja="私たちについて">About</a></nav><button id="language" aria-label="Switch to Japanese">日本語</button></header>
+<main id="top"><section class="hero"><div class="hero-copy"><p class="eyebrow">Art · Objects · Editions</p><h1 data-en="For a <span class='pencil-rose'>life</span><br>with <span class='pencil-blue'>art</span> in it." data-ja="<span class='pencil-blue'>アート</span>と、<br><span class='pencil-rose'>暮らしていく。</span>">For a <span class="pencil-rose">life</span><br>with <span class="pencil-blue">art</span> in it.</h1><p data-en="A meeting place for things made with thought, feeling and a pair of hands." data-ja="考えること、感じること、手を動かすこと。そこから生まれたものが集まる場所。">A meeting place for things made with thought, feeling and a pair of hands.</p><a class="text-link" href="#selection" data-en="Explore selected works ↗" data-ja="作品を見る ↗">Explore selected works ↗</a><span class="hero-no">STUDIO CEREBRUM / 01</span></div><figure class="hero-image"><img src="assets/work-rug.webp" width="5424" height="3616" fetchpriority="high" alt="A large pink and green hand-tufted rug held outdoors at a temple"><figcaption><span data-en="A textile work, out in the world." data-ja="外の世界に、テキスタイルの作品を。">A textile work, out in the world.</span><span>Textile / Archive</span></figcaption></figure></section>
+<section id="selection" class="selection"><div class="section-heading"><div><p class="eyebrow">01 / The selection</p><h2 data-en="Things to live with." data-ja="暮らしのそばに。">Things to live with.</h2></div><p class="section-note" data-en="A first look at the studio’s work.<br>Open a piece to discover more." data-ja="スタジオの作品をご紹介します。<br>それぞれの作品から、もう少し奥へ。">A first look at the studio’s work.<br>Open a piece to discover more.</p></div><div class="filters" role="group" aria-label="Filter selected works"><button class="active" data-filter="all" aria-pressed="true" data-en="All works" data-ja="すべて">All works</button><button data-filter="textile" aria-pressed="false" data-en="Textile" data-ja="テキスタイル">Textile</button><button data-filter="print" aria-pressed="false" data-en="Publication" data-ja="出版物">Publication</button><button data-filter="object" aria-pressed="false" data-en="Small objects" data-ja="小さなもの">Small objects</button><span id="count" aria-live="polite">4 works</span></div>
+<div class="works"><article data-category="textile"><button class="work-button" data-work="rug"><div class="image-mat pink"><img src="assets/Rug.webp" alt="Pink, white, black and yellow organic forms in a hand-tufted rug" width="3507" height="2480" loading="lazy"></div><div class="work-meta"><span>Textile work</span><span>↗</span></div><p data-en="Colour, held in yarn" data-ja="糸に宿る色">Colour, held in yarn</p><span class="caption">Studio archive</span></button></article><article data-category="object"><button class="work-button" data-work="pouch"><div class="image-mat sage"><img src="assets/Minipouch.webp" alt="A blue knitted pouch with a cord and bead" width="3294" height="2329" loading="lazy"></div><div class="work-meta"><span>Small object</span><span>↗</span></div><p data-en="Minipouch" data-ja="ミニポーチ">Minipouch</p><span class="caption">Studio archive</span></button></article><article data-category="print"><button class="work-button" data-work="zine"><div class="image-mat cream"><img src="assets/work-prato.webp" alt="An open publication held in hands, with a yellow mesh form" width="1209" height="615" loading="lazy"></div><div class="work-meta"><span>Publication</span><span>↗</span></div><p>In good company with FF</p><span class="caption">Studio archive</span></button></article><article data-category="print"><button class="work-button" data-work="study"><div class="image-mat gray"><img src="assets/work-zine.webp" alt="A textile research publication spread with a photograph of wool crates" width="788" height="591" loading="lazy"></div><div class="work-meta"><span>Publication</span><span>↗</span></div><p>Case Study 1</p><span class="caption">Studio archive</span></button></article></div><noscript><p>All works are shown. For details, contact the studio using the email below.</p></noscript></section>
+<section id="makers" class="maker makers-pair"><p class="eyebrow">02 / In the company of</p><h2 class="makers-heading" data-en="Two practices.<br>A shared sensibility." data-ja="ふたつの制作。<br>ひとつの感性。">Two practices.<br>A shared sensibility.</h2><div class="makers-list">
+<article class="maker-card"><a class="maker-logo musucus-mark" href="https://musucus.base.shop/" target="_blank" rel="noopener" aria-label="musucus — visit the shop"><img src="assets/musucus-logo.webp" alt="musucus — illustrated hands and wordmark" width="1800" height="286" loading="lazy"></a><div><h3>musucus</h3><p class="maker-subtitle" data-en="Colour, form, and the feeling of yarn." data-ja="色、かたち、糸の手触り。">Colour, form, and the feeling of yarn.</p><p data-en="Handmade rugs from a practice dedicated to texture, form and the feeling of a room." data-ja="質感、かたち、そして部屋に流れる空気を大切にした、ハンドメイドのラグ。">Handmade rugs from a practice dedicated to texture, form and the feeling of a room.</p><a class="text-link" href="https://musucus.base.shop/" target="_blank" rel="noopener" data-en="Visit the musucus shop ↗" data-ja="musucus のショップへ ↗">Visit the musucus shop ↗</a></div></article>
+<article class="maker-card"><a class="maker-logo otumn-mark" href="https://www.instagram.com/otumn_/" target="_blank" rel="noopener" aria-label="otumn — view Instagram"><img src="assets/otumn-logo.jpg" alt="otumn." width="150" height="150" loading="lazy"></a><div><h3>otumn.</h3><p class="maker-subtitle" data-en="More than a candle." data-ja="キャンドルの、その先に。">More than a candle.</p><p data-en="A candle project exploring stories, traditional ceramics and the life of objects. Discover otumn’s work and latest news on Instagram." data-ja="物語、伝統的な陶器、ものが持つ時間を探るキャンドルのプロジェクト。作品や最新のお知らせはInstagramへ。">A candle project exploring stories, traditional ceramics and the life of objects. Discover otumn’s work and latest news on Instagram.</p><a class="text-link" href="https://www.instagram.com/otumn_/" target="_blank" rel="noopener" data-en="Discover otumn. · @otumn_ ↗" data-ja="otumn. を見る · @otumn_ ↗">Discover otumn. · @otumn_ ↗</a></div></article>
+</div></section>
+<section id="journal" class="journal"><div class="journal-image"><img src="assets/work-zine.webp" alt="Research notes and a photograph in the Prato textile publication" width="788" height="591" loading="lazy"></div><div><p class="eyebrow">03 / From the studio</p><h2 data-en="The story<br>inside the material." data-ja="素材の中の、<br>物語。">The story<br>inside the material.</h2><p data-en="A publication can carry a place, a process and a question. Our work moves between the printed page and the things we can hold." data-ja="場所や、過程や、問いを、一冊に。私たちの制作は、紙の上と、手に触れられるものの間を行き来します。">A publication can carry a place, a process and a question. Our work moves between the printed page and the things we can hold.</p><button class="text-link" data-work="study" data-en="Open the publication ↗" data-ja="出版物を見る ↗">Open the publication ↗</button></div></section>
+<section id="about" class="about"><p class="eyebrow">04 / A shared practice</p><h2 data-en="Made by us.<br>Chosen together." data-ja="私たちがつくるもの。<br>一緒に選ぶもの。">Made by us.<br>Chosen together.</h2><div><p data-en="Studio Cerebrum is a shared practice by two artists, working across publications, textiles and small objects. It begins with the things we make, and grows through the things we are drawn to." data-ja="Studio Cerebrum は、二人のアーティストによる共同の活動です。出版物、テキスタイル、小さなオブジェクト。自分たちがつくるものから始まり、心を惹かれるものへと広がっていきます。">Studio Cerebrum is a shared practice by two artists, working across publications, textiles and small objects. It begins with the things we make, and grows through the things we are drawn to.</p><a class="text-link" href="mailto:info.studiocerebrum@gmail.com" data-en="Get in touch ↗" data-ja="お問い合わせ ↗">Get in touch ↗</a></div></section>
+</main><footer><p>Studio Cerebrum<br><span>Tokyo / London</span></p><a href="https://www.instagram.com/studio_cerebrum/" target="_blank" rel="noopener">Instagram ↗</a><a href="mailto:info.studiocerebrum@gmail.com">info.studiocerebrum@gmail.com</a><span>© 2026 Studio Cerebrum</span></footer>
+<dialog id="work-dialog" aria-labelledby="work-title"><button id="close-dialog" class="close" aria-label="Close work details">Close ×</button><div class="dialog-grid"><img id="work-image" src="assets/Rug.webp" alt=""><div><p class="eyebrow" id="work-kind"></p><h2 id="work-title"></h2><p id="work-description"></p><p class="note" data-en="For prices, dimensions, materials and availability, please contact the studio." data-ja="価格、サイズ、素材、在庫については、スタジオまでお問い合わせください。">For prices, dimensions, materials and availability, please contact the studio.</p><a id="work-contact" class="text-link" href="mailto:info.studiocerebrum@gmail.com" data-en="Enquire about this work ↗" data-ja="この作品について問い合わせる ↗">Enquire about this work ↗</a></div></div></dialog><script src="app.js"></script></body></html>
